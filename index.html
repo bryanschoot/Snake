@@ -3,10 +3,11 @@
     <head>
         <title>Snake</title>
     </head>
-    <body>
-        <h2 id="score">Score: 0</h2>
-        <button id="start">Start</button>
-        <br/>
+    <body style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div style="width: 300px; display: flex; align-items: center; justify-content: space-between;">
+            <h2 id="score">Score: 0</h2>
+            <button id="start">Start</button>
+        </div>
         <canvas id="canvas" height="300" width="300" style="background-color: rgb(60, 60, 60);"></canvas>
     </body>
     <script src="./scripts/game.js"></script>
