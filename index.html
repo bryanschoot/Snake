@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Snake</title>
+    </head>
+    <body>
+        <h2 id="score">Score: 0</h2>
+        <button id="start">Start</button>
+        <br/>
+        <canvas id="canvas" height="300" width="300" style="background-color: rgb(60, 60, 60);"></canvas>
+    </body>
+    <script src="./scripts/game.js"></script>
+    <script src="./scripts/snake.js"></script>
+    <script src="./scripts/fruit.js"></script>
+    <script>
+        let start = document.getElementById("start");
+        let restart = document.getElementById("restart");
+        let game = new Game();
+
+        start.onclick = () => {
+            game.start();
+        }
+    </script>
+</html>
