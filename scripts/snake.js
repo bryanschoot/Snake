@@ -5,8 +5,8 @@ class Snake
         this.scale = scale;
         this.ctx = ctx
         this.canvas = canvas;
-        this.x = this.canvas.height / 2;
-        this.y = this.canvas.height / 2;
+        this.x = Math.floor(this.canvas.height / 2);
+        this.y = Math.floor(this.canvas.height / 2);
         this.xSpeed = this.scale * 1;
         this.ySpeed = 0;
         this.alive = true;

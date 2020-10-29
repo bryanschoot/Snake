@@ -6,7 +6,7 @@ class Game
         this.score = document.getElementById("score");
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
-        this.scale = 10;
+        this.scale = 15;
         this.rows = this.canvas.height / this.scale;
         this.columns = this.canvas.width / this.scale;
     }
