@@ -6,21 +6,29 @@ class Fruit
         this.scale = scale;
         this.rows = rows;
         this.columns = columns;
-        
-        this.update();
+        this.location = this.randomLocation();
     }
 
     draw()
     {
         this.ctx.fillStyle = "#FF0000";
-        this.ctx.fillRect(this.x, this.y, this.scale, this.scale);
+        this.ctx.fillRect(this.location.x, this.location.y, this.scale, this.scale);
     }
 
-    update()
+    update(snake)
     {
-        this.x = (Math.floor(Math.random() * this.columns - 1) + 1) * this.scale;
-        this.y = (Math.floor(Math.random() * this.rows - 1) + 1) * this.scale;
+        let tmp = null;
+
+        while(tmp == null || snake.onSnake(tmp)) 
+        {
+            tmp = this.randomLocation();
+        }
+
+        this.location = tmp;
     }
 
-    // TODO: dont place food on the snake, need some logic for that
+    randomLocation()
+    {
+        return {x: (Math.floor(Math.random() * this.columns - 1) + 1) * this.scale, y: (Math.floor(Math.random() * this.rows - 1) + 1) * this.scale}
+    }
 }

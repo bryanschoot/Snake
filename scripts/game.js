@@ -7,7 +7,7 @@ class Game
         this.score = document.getElementById("score");
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
-        this.scale = 15;
+        this.scale = 30;
         this.rows = this.canvas.height / this.scale;
         this.columns = this.canvas.width / this.scale;
     }
@@ -36,9 +36,9 @@ class Game
         this.score.innerText = "Score: " + this.snake.segmentsCount;
         this.snake.update();
 
-        if(this.snake.eat(this.fruit))
+        if(this.snake.eat(this.fruit.location))
         {
-            this.fruit.update();
+            this.fruit.update(this.snake);
             this.snake.addSegment(this.amount.value);
         }
     }

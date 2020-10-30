@@ -32,20 +32,28 @@ class Snake
             this.segments[i + 1] = { ...this.segments[i] }
         }
 
-        this.segments[0].x += direction.x
-        this.segments[0].y += direction.y
+        this.segments[0].x += direction.x;
+        this.segments[0].y += direction.y;
     }
 
-    eat(food)
+    eat(location)
     {
-        return this.segments[0].x === food.x && this.segments[0].y === food.y;
+        return this.segments[0].x == location.x && this.segments[0].y == location.y
     }
 
     addSegment(amount) 
     {
-        for (let i = 0; i < amount; i++) {
+        for (let i = 0; i < amount; i++) 
+        {
             this.segments.push({ ...this.segments[this.segments.length - 1] })
         }
+    }
+
+    onSnake(location)
+    {
+        return this.segments.some(segment => {
+            return segment.x === location.x && segment.y === location.y;
+        });
     }
 
     // TODO: Add collision if the snake exits the map or touches his tail
