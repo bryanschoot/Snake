@@ -16,6 +16,7 @@ class Game
     {
         this.snake = new Snake(this.canvas, this.ctx, this.scale);
         this.fruit = new Fruit(this.ctx, this.scale, this.rows, this.columns);
+        this.gameScore = 0;
 
         let interval = setInterval(() => 
         {
@@ -33,11 +34,12 @@ class Game
 
     update() 
     {
-        this.score.innerText = "Score: " + this.snake.segmentsCount;
         this.snake.update();
 
         if(this.snake.eat(this.fruit.location))
         {
+            this.score.innerText = "Score: " + this.gameScore++;
+
             this.fruit.update(this.snake);
             this.snake.addSegment(this.amount.value);
         }
