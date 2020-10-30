@@ -13,6 +13,7 @@ class Fruit
     {
         this.ctx.fillStyle = "#FF0000";
         this.ctx.fillRect(this.location.x, this.location.y, this.scale, this.scale);
+        this.ctx.strokeRect(this.location.x, this.location.y, this.scale, this.scale);
     }
 
     update(snake)

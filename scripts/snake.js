@@ -9,22 +9,20 @@ class Snake
         this.scale = scale;
 
         this.segments = [{ x: Math.floor(canvas.height / 2), y: Math.floor(canvas.width / 2) }];
-        this.segmentsCount = 0;
     }
 
     draw()
     {
         this.segments.forEach(segment => 
         {
-            this.ctx.fillStyle = "#FFFFFF";
+            this.ctx.fillStyle = "#31b931";
             this.ctx.fillRect(segment.x, segment.y, this.scale, this.scale);
+            this.ctx.strokeRect(segment.x, segment.y, this.scale, this.scale);
         });
     }
 
     update()
     {
-        this.segmentsCount = this.segments.length - 1;
-
         const direction = this.input.getDirection();
 
         for (let i = this.segments.length - 2; i >= 0; i--) 
