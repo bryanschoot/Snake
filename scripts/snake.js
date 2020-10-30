@@ -2,89 +2,51 @@ class Snake
 {
     constructor(canvas, ctx, scale) 
     {
-        this.scale = scale;
-        this.ctx = ctx
+        this.input = new Input(scale);
+
         this.canvas = canvas;
-        this.x = Math.floor(this.canvas.height / 2);
-        this.y = Math.floor(this.canvas.height / 2);
-        this.xSpeed = this.scale * 1;
-        this.ySpeed = 0;
-        this.alive = true;
-        this.total = 0;
-        this.tail = [];
+        this.ctx = ctx;
+        this.scale = scale;
+
+        this.segments = [{ x: Math.floor(canvas.height / 2), y: Math.floor(canvas.width / 2) }];
+        this.segmentsCount = 0;
     }
 
-    draw() 
+    draw()
     {
-        this.ctx.fillStyle = "#FFFFFF";
-
-        for (let i = 0; i < this.tail.length; i++) 
+        this.segments.forEach(segment => 
         {
-            this.ctx.fillRect(this.tail[i].x, this.tail[i].y, this.scale, this.scale);
-        }
-
-        this.ctx.fillRect(this.x, this.y, this.scale, this.scale);
+            this.ctx.fillStyle = "#FFFFFF";
+            this.ctx.fillRect(segment.x, segment.y, this.scale, this.scale);
+        });
     }
 
     update()
     {
-        for (let i = 0; i < this.tail.length - 1; i++) 
+        this.segmentsCount = this.segments.length - 1;
+
+        const direction = this.input.getDirection();
+
+        for (let i = this.segments.length - 2; i >= 0; i--) 
         {
-            this.tail[i] = this.tail[i + 1];
+            this.segments[i + 1] = { ...this.segments[i] }
         }
-      
-        this.tail[this.total - 1] = { x: this.x, y: this.y };
 
-        this.x += this.xSpeed;
-        this.y += this.ySpeed;
-
-        this.collision();
+        this.segments[0].x += direction.x
+        this.segments[0].y += direction.y
     }
 
-    move(direction)
-    {   
-        switch(direction) 
-        {
-            case 'Up':
-                this.xSpeed = 0;
-                this.ySpeed = -this.scale * 1;
-                break;
-            case 'Down':
-                this.xSpeed = 0;
-                this.ySpeed = this.scale * 1;
-                break;
-            case 'Left':
-                this.xSpeed = -this.scale * 1;
-                this.ySpeed = 0;
-                break;
-            case 'Right':
-                this.xSpeed = this.scale * 1;
-                this.ySpeed = 0;
-                break;
-        }
-    }
-
-    eat(fruit) 
+    eat(food)
     {
-        if (this.x === fruit.x && this.y === fruit.y) 
-        {
-            this.total++;
-            return true;
-        }
-        return false;
+        return this.segments[0].x === food.x && this.segments[0].y === food.y;
     }
 
-    collision()
+    addSegment(amount) 
     {
-        if (this.x > this.canvas.width || this.x < 0 || this.y > this.canvas.height || this.y < 0) {
-            this.alive = false;
-        }
-
-        for (var i = 0; i < this.tail.length; i++) 
-        {
-            if (this.x === this.tail[i].x && this.y === this.tail[i].y) {
-                this.alive = false;
-            }
+        for (let i = 0; i < amount; i++) {
+            this.segments.push({ ...this.segments[this.segments.length - 1] })
         }
     }
+
+    // TODO: Add collision if the snake exits the map or touches his tail
 }

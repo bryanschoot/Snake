@@ -2,7 +2,8 @@ class Game
 {
     constructor() 
     {
-        this.state = document.getElementById("state");
+        this.amount = document.getElementById("amount");
+        this.speed = document.getElementById("speed");
         this.score = document.getElementById("score");
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
@@ -15,51 +16,38 @@ class Game
     {
         this.snake = new Snake(this.canvas, this.ctx, this.scale);
         this.fruit = new Fruit(this.ctx, this.scale, this.rows, this.columns);
-        this.keypresses();
-        this.draw();
-    }
 
-    draw() 
-    {
-        this.score.innerText = "Score: " + this.snake.total;
-        
         let interval = setInterval(() => 
         {
-            if (this.snake.alive) 
+            if (true) // Check if snake is death
             {
                 this.update();
+                this.draw();
             } 
             else 
             {
-                alert("Je stierf...");
                 clearInterval(interval);
             }
-        }, 100);
+        }, parseInt(this.speed.value));
     }
 
     update() 
     {
-       
-        this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
-
-        this.fruit.draw();
-        
+        this.score.innerText = "Score: " + this.snake.segmentsCount;
         this.snake.update();
-        this.snake.draw();
 
         if(this.snake.eat(this.fruit))
         {
             this.fruit.update();
+            this.snake.addSegment(this.amount.value);
         }
-
-        this.score.innerText = "Score: " + this.snake.total;
     }
 
-    keypresses()
+    draw() 
     {
-        window.addEventListener('keydown', ((evt) => {
-            let direction = evt.key.replace('Arrow', '');
-            this.snake.move(direction);
-        }));
+        this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
+
+        this.snake.draw();
+        this.fruit.draw();
     }
 }

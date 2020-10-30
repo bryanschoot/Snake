@@ -4,10 +4,9 @@ class Fruit
     {
         this.ctx = ctx;
         this.scale = scale;
-        this.columns = columns;
         this.rows = rows;
-        this.x;
-        this.y;
+        this.columns = columns;
+        
         this.update();
     }
 
@@ -22,4 +21,6 @@ class Fruit
         this.x = (Math.floor(Math.random() * this.columns - 1) + 1) * this.scale;
         this.y = (Math.floor(Math.random() * this.rows - 1) + 1) * this.scale;
     }
+
+    // TODO: dont place food on the snake, need some logic for that
 }
