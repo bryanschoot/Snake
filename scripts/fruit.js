@@ -20,6 +20,7 @@ class Fruit
     {
         let tmp = null;
 
+        // Checks whether the new location of the fruit is not on the snakes body.
         while(tmp == null || snake.onSnake(tmp)) 
         {
             tmp = this.randomLocation();
@@ -30,6 +31,7 @@ class Fruit
 
     randomLocation()
     {
+        // return random location based on amount of columns and rows.
         return {x: (Math.floor(Math.random() * this.columns - 1) + 1) * this.scale, y: (Math.floor(Math.random() * this.rows - 1) + 1) * this.scale}
     }
 }

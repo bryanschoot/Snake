@@ -20,13 +20,14 @@ class Game
 
         let interval = setInterval(() => 
         {
-            if (true) // Check if snake is death
+            if (this.snake.alive)
             {
                 this.update();
                 this.draw();
             } 
             else 
             {
+                alert("You died, hit start to play again!");
                 clearInterval(interval);
             }
         }, parseInt(this.speed.value));
@@ -38,7 +39,7 @@ class Game
 
         if(this.snake.eat(this.fruit.location))
         {
-            this.score.innerText = "Score: " + this.gameScore++;
+            this.score.innerText = "Score: " + this.snake.segments.length;
 
             this.fruit.update(this.snake);
             this.snake.addSegment(this.amount.value);

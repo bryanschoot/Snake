@@ -3,11 +3,10 @@ class Snake
     constructor(canvas, ctx, scale) 
     {
         this.input = new Input(scale);
-
+        this.alive = true;
         this.canvas = canvas;
         this.ctx = ctx;
         this.scale = scale;
-
         this.segments = [{ x: Math.floor(canvas.height / 2), y: Math.floor(canvas.width / 2) }];
     }
 
@@ -32,6 +31,8 @@ class Snake
 
         this.segments[0].x += direction.x;
         this.segments[0].y += direction.y;
+
+        this.collision();
     }
 
     eat(location)
@@ -54,5 +55,18 @@ class Snake
         });
     }
 
-    // TODO: Add collision if the snake exits the map or touches his tail
+    
+    collision()
+    {
+        if (this.segments[0].x > this.canvas.width || this.segments[0].x < 0 || this.segments[0].y > this.canvas.height || this.segments[0].y < 0) {
+            this.alive = false;
+        }
+
+        for (var i = 1; i < this.segments.length; i++) 
+        {
+            if (this.segments[0].x === this.segments[i].x && this.segments[0].y === this.segments[i].y) {
+                this.alive = false;
+            }
+        }
+    }
 }
