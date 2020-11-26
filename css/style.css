@@ -6,16 +6,16 @@ body {
 }
 
 .space-between {
+    /*The width off canvas*/
     width: 300px;
-    /*Be width off canvas*/
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .column {
+    /*The width off canvas*/
     width: 300px;
-    /*Be width off canvas*/
     display: flex;
     align-items: start;
     flex-direction: column;
