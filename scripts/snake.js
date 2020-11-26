@@ -25,8 +25,6 @@ class Snake {
 
         this.segments[0].x += direction.x;
         this.segments[0].y += direction.y;
-
-        this.collision();
     }
 
     eat(location) {
@@ -36,24 +34,6 @@ class Snake {
     addSegment(amount) {
         for (let i = 0; i < amount; i++) {
             this.segments.push({...this.segments[this.segments.length - 1] })
-        }
-    }
-
-    onSnake(location) {
-        return this.segments.some(segment => {
-            return segment.x === location.x && segment.y === location.y;
-        });
-    }
-
-    collision() {
-        if (this.segments[0].x > this.canvas.width - this.scale || this.segments[0].x < 0 || this.segments[0].y > this.canvas.height - this.scale || this.segments[0].y < 0) {
-            this.alive = false;
-        }
-
-        for (var i = 1; i < this.segments.length; i++) {
-            if (this.segments[0].x === this.segments[i].x && this.segments[0].y === this.segments[i].y) {
-                this.alive = false;
-            }
         }
     }
 }

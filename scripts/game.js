@@ -3,14 +3,12 @@ class Game {
         this.amount = document.getElementById("amount");
         this.speed = document.getElementById("speed");
         this.score = document.getElementById("score");
-        this.highscore = document.getElementById("highscore");
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
         this.scale = 30;
         this.rows = this.canvas.height / this.scale;
         this.columns = this.canvas.width / this.scale;
         this.gameScore = 0;
-        this.highScore = 0;
     }
 
     start() {
@@ -22,7 +20,6 @@ class Game {
                 this.update();
                 this.draw();
             } else {
-                this.endGame();
                 clearInterval(interval);
             }
         }, parseInt(this.speed.value));
@@ -45,15 +42,5 @@ class Game {
 
         this.snake.draw();
         this.fruit.draw();
-    }
-
-    endGame() {
-        alert("You died, hit start to play again!");
-        if (this.gameScore > this.highScore) {
-            this.highScore = this.gameScore;
-            this.highscore.innerText = "High Score: " + this.highScore;
-        }
-        this.gameScore = 0;
-        this.score.innerText = "Score: " + this.gameScore;
     }
 }
