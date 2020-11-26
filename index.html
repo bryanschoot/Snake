@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Snake</title>
 
-        <link href="./css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="space-between base-width">
-            <h2 id="score">Score: 0</h2>
-            <button id="start">Start</button>
-        </div>
-        <canvas id="canvas" width="300" height="300"></canvas>
-        <div class="column">
-            <h2>Settings</h2>
-            <form class="space-between">
-                <p>Select snake growth:</p>
-                <select id="amount">
-                    <option value="1" selected="selected">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            </form>
-            <form class="space-between">
-                <p>Select snake speed:</p>
-                <select id="speed">
-                    <option value="250" selected="selected">Slow</option>
-                    <option value="200">Fast</option>
-                    <option value="150">Ultra</option>
-                </select>
-            </form>
-        </div>
-    </body>
-    <script src="./scripts/game.js"></script>
-    <script src="./scripts/input.js"></script>
-    <script src="./scripts/snake.js"></script>
-    <script src="./scripts/fruit.js"></script>
-    <script>
-        let start = document.getElementById("start");
-        
-        let game = new Game();
+<head>
+    <title>Snake</title>
 
-        start.onclick = () => {
-            game.start();
-        }
-    </script>
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="space-between base-width">
+        <h2 id="highscore">High Score: 0</h2>
+        <h2 id="score">Score: 0</h2>
+        <button id="start">Start</button>
+    </div>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <div class="column">
+        <h2>Settings</h2>
+        <form class="space-between">
+            <p>Select snake growth:</p>
+            <select id="amount">
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </form>
+        <form class="space-between">
+            <p>Select snake speed:</p>
+            <select id="speed">
+                <option value="250" selected="selected">Slow</option>
+                <option value="200">Fast</option>
+                <option value="150">Ultra</option>
+            </select>
+        </form>
+    </div>
+</body>
+<script src="./scripts/game.js"></script>
+<script src="./scripts/input.js"></script>
+<script src="./scripts/snake.js"></script>
+<script src="./scripts/fruit.js"></script>
+<script>
+    let start = document.getElementById("start");
+
+    let game = new Game();
+
+    start.onclick = () => {
+        game.start();
+    }
+</script>
+
 </html>

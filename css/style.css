@@ -1,21 +1,23 @@
 body {
     display: flex;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
 .space-between {
-    width: 300px; /*Be width off canvas*/
-    display: flex; 
-    align-items: center; 
+    width: 300px;
+    /*Be width off canvas*/
+    display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 .column {
-    width: 300px; /*Be width off canvas*/
-    display: flex; 
-    align-items: start; 
+    width: 300px;
+    /*Be width off canvas*/
+    display: flex;
+    align-items: start;
     flex-direction: column;
 }
 
