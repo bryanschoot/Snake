@@ -1,0 +1,441 @@
+{
+	"SnakeTemplate": {
+		"prefix": "shtml",
+		"body": [
+		  "<!DOCTYPE html>",
+		  "<html>",
+		  "",
+		  "<head>",
+		  "    <title>Snake</title>",
+		  "    <link href=\"./css/style.css\" rel=\"stylesheet\">",
+		  "</head>",
+		  "",
+		  "<body>",
+		  "    <canvas id=\"canvas\" width=\"300\" height=\"300\"></canvas>",
+		  "</body>",
+		  "",
+		  "</html>"
+		],
+		"description": "SnakeTemplate"
+	  },
+
+  "Snake Canvas CSS": {
+	"prefix": "scanvascss",
+	"body": [
+	  "#canvas {",
+	  "    background-color: rgb(60, 60, 60);",
+	  "}"
+	],
+	"description": "Snake Canvas CSS"
+  },
+
+  "SnakeTemplate1": {
+	"prefix": "sheaders",
+	"body": [
+	  "<div class=\"space-between base-width\">",
+	  "   <h2 id=\"highscore\">High Score: 0</h2>",
+	  "   <h2 id=\"score\">Score: 0</h2>",
+	  "   <button id=\"start\">Start</button>",
+	  "</div>"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate2": {
+	"prefix": "ssettings",
+	"body": [
+	  "<div class=\"column\">",
+	  "        <h2>Settings</h2>",
+	  "        <form class=\"space-between\">",
+	  "            <p>Select snake growth:</p>",
+	  "            <select id=\"amount\">",
+	  "                <option value=\"1\" selected=\"selected\">1</option>",
+	  "                <option value=\"2\">2</option>",
+	  "                <option value=\"3\">3</option>",
+	  "            </select>",
+	  "        </form>",
+	  "        <form class=\"space-between\">",
+	  "            <p>Select snake speed:</p>",
+	  "            <select id=\"speed\">",
+	  "                <option value=\"250\" selected=\"selected\">Slow</option>",
+	  "                <option value=\"200\">Fast</option>",
+	  "                <option value=\"150\">Ultra</option>",
+	  "            </select>",
+	  "        </form>",
+	  "</div>"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate3": {
+	"prefix": "sbodycss",
+	"body": [
+	  "body {",
+	  "    display: flex;",
+	  "    align-items: center;",
+	  "    justify-content: center;",
+	  "    flex-direction: column;",
+	  "}",
+	  ""
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate4": {
+	"prefix": "sheadercss",
+	"body": [
+	  ".space-between {",
+	  "    width: 300px;",
+	  "    /*Be width off canvas*/",
+	  "    display: flex;",
+	  "    align-items: center;",
+	  "    justify-content: space-between;",
+	  "}",
+	  "",
+	  ".column {",
+	  "    width: 300px;",
+	  "    /*Be width off canvas*/",
+	  "    display: flex;",
+	  "    align-items: start;",
+	  "    flex-direction: column;",
+	  "}"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate5": {
+	"prefix": "sgame",
+	"body": [
+	  "class Game {",
+	  "    constructor() {}",
+	  "",
+	  "    start() {}",
+	  "",
+	  "    update() {}",
+	  "",
+	  "    draw() {}",
+	  "}"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate6": {
+	"prefix": "ssnake",
+	"body": [
+	  "class Snake {",
+	  "    constructor() {}",
+	  "",
+	  "    draw() {}",
+	  "",
+	  "    update() {}",
+	  "}"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate7": {
+	"prefix": "sfruit",
+	"body": [
+	  "class Fruit {",
+	  "    constructor() {}",
+	  "",
+	  "    draw() {}",
+	  "",
+	  "    update() {}",
+	  "}"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate8": {
+	"prefix": "sinput",
+	"body": [
+	  "class Input {",
+	  "    constructor() {}",
+	  "}"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate9": {
+	"prefix": "sgameconstructor",
+	"body": [
+	  "this.amount = document.getElementById(\"amount\");",
+	  "        this.speed = document.getElementById(\"speed\");",
+	  "        this.score = document.getElementById(\"score\");",
+	  "        this.canvas = document.getElementById(\"canvas\");",
+	  "        this.ctx = this.canvas.getContext(\"2d\");",
+	  "        this.scale = 30;",
+	  "        this.rows = this.canvas.height / this.scale;",
+	  "        this.columns = this.canvas.width / this.scale;",
+	  "        this.gameScore = 0;"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate10": {
+	"prefix": "sgamestart",
+	"body": [
+	  "this.snake = new Snake(this.canvas, this.ctx, this.scale);",
+	  "        this.fruit = new Fruit(this.ctx, this.scale, this.rows, this.columns);",
+	  "",
+	  "        let interval = setInterval(() => {",
+	  "            if (this.snake.alive) {",
+	  "                this.update();",
+	  "                this.draw();",
+	  "            } else {",
+	  "                clearInterval(interval);",
+	  "            }",
+	  "        }, parseInt(this.speed.value));"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate11": {
+	"prefix": "sgameupdate",
+	"body": [
+	  "        this.snake.update();",
+	  "",
+	  "        if (this.snake.eat(this.fruit.location)) {",
+	  "            this.gameScore = this.snake.segments.length;",
+	  "            this.score.innerText = \"Score: \" + this.gameScore;",
+	  "",
+	  "            this.fruit.update(this.snake);",
+	  "            this.snake.addSegment(this.amount.value);",
+	  "        }"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate12": {
+	"prefix": "sgamedraw",
+	"body": [
+	  "        this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);",
+	  "",
+	  "        this.snake.draw();",
+	  "        this.fruit.draw();"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate13": {
+	"prefix": "snakeconstructor",
+	"body": [
+	  "        this.input = new Input(scale);",
+	  "        this.alive = true;",
+	  "        this.canvas = canvas;",
+	  "        this.ctx = ctx;",
+	  "        this.scale = scale;",
+	  "        this.segments = [{ x: Math.floor(canvas.height / 2), y: Math.floor(canvas.width / 2) }];"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate14": {
+	"prefix": "snakedraw",
+	"body": [
+	  "        this.segments.forEach(segment => {",
+	  "            this.ctx.fillStyle = \"#31b931\";",
+	  "            this.ctx.fillRect(segment.x, segment.y, this.scale, this.scale);",
+	  "            this.ctx.strokeRect(segment.x, segment.y, this.scale, this.scale);",
+	  "        });"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate15": {
+	"prefix": "snakeupdate",
+	"body": [
+	  "        const direction = this.input.getDirection();",
+	  "",
+	  "        for (let i = this.segments.length - 2; i >= 0; i--) {",
+	  "            this.segments[i + 1] = {...this.segments[i] }",
+	  "        }",
+	  "",
+	  "        this.segments[0].x += direction.x;",
+	  "        this.segments[0].y += direction.y;"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate16": {
+	"prefix": "snakeeat",
+	"body": [
+	  "eat(location) {",
+	  "        return this.segments[0].x == location.x && this.segments[0].y == location.y",
+	  "    }"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate17": {
+	"prefix": "snakeaddsegment",
+	"body": [
+	  "addSegment(amount) {",
+	  "        for (let i = 0; i < amount; i++) {",
+	  "            this.segments.push({...this.segments[this.segments.length - 1] })",
+	  "        }",
+	  "    }"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate18": {
+	"prefix": "sfruitconstructor",
+	"body": [
+	  "        this.ctx = ctx;",
+	  "        this.scale = scale;",
+	  "        this.rows = rows;",
+	  "        this.columns = columns;",
+	  "        this.location = this.randomLocation();"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate19": {
+	"prefix": "sfruitdraw",
+	"body": [
+	  "        this.ctx.fillStyle = \"#FF0000\";",
+	  "        this.ctx.fillRect(this.location.x, this.location.y, this.scale, this.scale);",
+	  "        this.ctx.strokeRect(this.location.x, this.location.y, this.scale, this.scale);"
+	],
+	"description": "SnakeTemplate"
+  },
+
+  "SnakeTemplate20": {
+	"prefix": "sfruitrandomlocation",
+	"body": [
+	  "randomLocation() {",
+	  "        // return random location based on amount of columns and rows. Within the canvas.",
+	  "        return { x: (Math.floor(Math.random() * this.columns - 1) + 1) * this.scale, y: (Math.floor(Math.random() * this.rows - 1) + 1) * this.scale }",
+	  "    }"
+	],
+	"description": "SnakeTemplate20"
+  },
+
+  "SnakeTemplate21": {
+	"prefix": "sinputconstructor",
+	"body": [
+	  "        this.scale = scale;",
+	  "        this.direction = { x: 0, y: 0 }",
+	  "        this.lastDirection = { x: 0, y: 0 }",
+	  "",
+	  "        window.addEventListener('keydown', e => {",
+	  "            switch (e.key) {",
+	  "                case 'ArrowUp':",
+	  "                    this.direction = { x: 0, y: -this.scale * 1 }",
+	  "                    break",
+	  "                case 'ArrowDown':",
+	  "                    this.direction = { x: 0, y: this.scale * 1 }",
+	  "                    break",
+	  "                case 'ArrowLeft':",
+	  "                    this.direction = { x: -this.scale * 1, y: 0 }",
+	  "                    break",
+	  "                case 'ArrowRight':",
+	  "                    this.direction = { x: this.scale * 1, y: 0 }",
+	  "                    break",
+	  "            }",
+	  "        })"
+	],
+	"description": "SnakeTemplate21"
+  },
+
+  "SnakeTemplate22": {
+	"prefix": "sinputdirection",
+	"body": [
+	  "getDirection() {",
+	  "        this.lastDirection = this.direction;",
+	  "        return this.direction;",
+	  "    }"
+	],
+	"description": "SnakeTemplate22"
+  },
+
+  "SnakeTemplate23": {
+	"prefix": "sgameendgame",
+	"body": [
+	  "endGame() {",
+	  "        alert(\"You died, hit start to play again!\");",
+	  "        if (this.gameScore > this.highScore) {",
+	  "            this.highScore = this.gameScore;",
+	  "            this.highscore.innerText = \"High Score: \" + this.highScore;",
+	  "        }",
+	  "        this.gameScore = 0;",
+	  "        this.score.innerText = \"Score: \" + this.gameScore;",
+	  "    }"
+	],
+	"description": "SnakeTemplate23"
+  },
+
+  "SnakeTemplate24": {
+	"prefix": "snakeonsnake",
+	"body": [
+	  "onSnake(location) {",
+	  "        return this.segments.some(segment => {",
+	  "            return segment.x === location.x && segment.y === location.y;",
+	  "        });",
+	  "    }"
+	],
+	"description": "SnakeTemplate24"
+  },
+
+  "SnakeTemplate25": {
+	"prefix": "snakecollision",
+	"body": [
+	  "collision() {",
+	  "        if (this.segments[0].x > this.canvas.width - this.scale || this.segments[0].x < 0 || this.segments[0].y > this.canvas.height - this.scale || this.segments[0].y < 0) {",
+	  "            this.alive = false;",
+	  "        }",
+	  "",
+	  "        for (var i = 1; i < this.segments.length; i++) {",
+	  "            if (this.segments[0].x === this.segments[i].x && this.segments[0].y === this.segments[i].y) {",
+	  "                this.alive = false;",
+	  "            }",
+	  "        }",
+	  "    }"
+	],
+	"description": "SnakeTemplate25"
+  },
+
+  "SnakeTemplate26": {
+	"prefix": "sfruitupdate2",
+	"body": [
+	  "        let tmp = null;",
+	  "",
+	  "        // Checks whether the new location of the fruit is not on the snakes body.",
+	  "        while (tmp == null || snake.onSnake(tmp)) {",
+	  "            tmp = this.randomLocation();",
+	  "        }",
+	  "",
+	  "        this.location = tmp;"
+	],
+	"description": "SnakeTemplate26"
+  },
+
+  "SnakeTemplate27": {
+	"prefix": "sinputconstructor2",
+	"body": [
+	  "        window.addEventListener('keydown', e => {",
+	  "            switch (e.key) {",
+	  "                case 'ArrowUp':",
+	  "                    if (this.lastDirection.y !== 0) break",
+	  "                    this.direction = { x: 0, y: -this.scale * 1 }",
+	  "                    break",
+	  "                case 'ArrowDown':",
+	  "                    if (this.lastDirection.y !== 0) break",
+	  "                    this.direction = { x: 0, y: this.scale * 1 }",
+	  "                    break",
+	  "                case 'ArrowLeft':",
+	  "                    if (this.lastDirection.x !== 0) break",
+	  "                    this.direction = { x: -this.scale * 1, y: 0 }",
+	  "                    break",
+	  "                case 'ArrowRight':",
+	  "                    if (this.lastDirection.x !== 0) break",
+	  "                    this.direction = { x: this.scale * 1, y: 0 }",
+	  "                    break",
+	  "            }",
+	  "        })"
+	],
+	"description": "SnakeTemplate27"
+  }
+}
